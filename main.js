@@ -21,6 +21,7 @@ for (const file of commandFiles) {
 
 client.once("ready", () => {
   console.log("Retro bot is Online!");
+   client.user.setActivity('Prefix:"^"');
 });
 
 client.on("message", (message) => {
