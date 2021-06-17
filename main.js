@@ -61,8 +61,8 @@ client.on("message", (message) => {
   const command = args.shift().toLowerCase();
 
   if (!message.member.roles.cache.has("853123121418993664")) {
-  } else if (command === "reactionrole") {
-    client.commands.get("reactionrole").execute(message, args, Discord, client);
+  } else if (command === "verifyrole") {
+    client.commands.get("verifyrole").execute(message, args, Discord, client);
   }
   if (!message.member.roles.cache.has("853125409745666069")) {
     message.channel.send("you can't use this command retard!");
