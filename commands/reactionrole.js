@@ -3,7 +3,7 @@ module.exports = {
   description: "Sets up a reaction role message!",
   async execute(message, args, Discord, client) {
     const channel = "854872129413447680";
-    const blueTeamRole = message.guild.roles.cache.find(
+    const verifiedRole = message.guild.roles.cache.find(
       (role) => role.name === "Member"
     );
 
@@ -29,7 +29,7 @@ module.exports = {
         if (reaction.emoji.name === verifiedEmoji) {
           await reaction.message.guild.members.cache
             .get(user.id)
-            .roles.add(blueTeamRole);
+            .roles.add(verifiedRole);
         }
       } else {
         return;
