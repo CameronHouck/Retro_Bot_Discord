@@ -8,8 +8,6 @@ const prefix = "^";
 
 const fs = require("fs");
 
-const welcome = require("./commands/welcome");
-
 client.commands = new Discord.Collection();
 
 const commandFiles = fs
@@ -24,9 +22,29 @@ for (const file of commandFiles) {
 client.once("ready", () => {
   console.log("Retro bot is Online!");
   client.user.setActivity('Prefix:"^"');
-
-  welcome(client);
 });
+
+client.on('guildMemberAdd', member => {
+  member.roles.add(member.guild.roles.cache.find(i => i.name === 'joins'))
+
+  const welcomeEmbed = new Discord.MessageEmbed()
+
+  welcomeEmbed.setColor('#FEC510')
+  welcomeEmbed.setTitle("Welcome to my server, enjoy your stay!")
+  welcomeEmbed.setImage('https://media1.tenor.com/images/ab75f02a4474553c851318bda0a08aa6/tenor.gif?itemid=21819402')
+
+  member.guild.channels.cache.find(i => i.name === 'joins').send(welcomeEmbed)
+})
+
+client.on('guildMemberRemove', member => {
+  const goodbyeEmbed = new Discord.MessageEmbed()
+
+  goodbyeEmbed.setColor('#EF2559')
+  goodbyeEmbed.setTitle("cya bitch, i didn't want you in here anyway!")
+  goodbyeEmbed.setImage('https://steamuserimages-a.akamaihd.net/ugc/397834183342543802/CDCE01D5BC47646F52E9E05BDE2A9DE962D60B21/')
+
+  member.guild.channels.cache.find(i => i.name === 'joins').send(goodbyeEmbed)
+})
 
 client.on("message", (message) => {
   if (!message.content.startsWith(prefix) || message.author.bot) return;
