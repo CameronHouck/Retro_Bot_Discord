@@ -47,7 +47,7 @@ client.on("guildMemberRemove", (member) => {
 
   goodbyeEmbed.setColor("#EF2559");
   goodbyeEmbed.setTitle("cya bitch, i didn't want you in here anyway!");
-  goodbyeEmbed.setImage(attachement);
+  goodbyeEmbed.setImage(attachment);
 
   member.guild.channels.cache
     .find((i) => i.name === "joins")
