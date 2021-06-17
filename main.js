@@ -24,15 +24,12 @@ client.once("ready", () => {
   client.user.setActivity('Prefix:"^"');
 });
 
-client.on("guildMemberAdd", (guildMember) => {
-  let welcomeRole = guildMember.guild.roles.cache.find(
+client.on("guildMemberAdd", (member) => {
+  console.log(member);
+  let welcomeRole = member.guild.roles.cache.find(
     (role) => role.id === "855179545161236480"
   );
-  guildMember.roles.add(welcomeRole);
-});
-
-client.on("guildMemberAdd", (member) => {
-  member.roles.add(member.guild.roles.cache.find((i) => i.name === "joins"));
+  member.roles.add(welcomeRole);
 
   const welcomeEmbed = new Discord.MessageEmbed();
 
