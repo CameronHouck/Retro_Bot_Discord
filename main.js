@@ -39,10 +39,12 @@ client.on("message", (message) => {
     client.commands.get("kick").execute(message, args);
   } else if (command === "ban") {
     client.commands.get("ban").execute(message, args);
-  } else if (command === "reactionrole") {
-    client.commands.get("reactionrole").execute(message, args, Discord, client);
   } else if (command === "clear") {
     client.commands.get("clear").execute(message, args);
+  } else if (command === "mute") {
+    client.commands.get("mute").execute(message, args);
+  } else if (command === "unmute") {
+    client.commands.get("unmute").execute(message, args);
   }
 });
 
