@@ -29,14 +29,16 @@ client.on("message", (message) => {
   const args = message.content.slice(prefix.length).split(/ +/);
   const command = args.shift().toLowerCase();
 
+  if (!message.member.roles.cache.has("853123121418993664")) {
+  } else if (command === "reactionrole") {
+    client.commands.get("reactionrole").execute(message, args, Discord, client);
+  }
   if (!message.member.roles.cache.has("853125409745666069")) {
     message.channel.send("you can't use this command retard!");
   } else if (command === "kick") {
     client.commands.get("kick").execute(message, args);
   } else if (command === "ban") {
     client.commands.get("ban").execute(message, args);
-  } else if (command === "reactionrole") {
-    client.commands.get("reactionrole").execute(message, args, Discord, client);
   } else if (command === "clear") {
     client.commands.get("clear").execute(message, args);
   }
