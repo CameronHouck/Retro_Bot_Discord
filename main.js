@@ -8,6 +8,8 @@ const prefix = "^";
 
 const fs = require("fs");
 
+const welcome = require("./commands/welcome");
+
 client.commands = new Discord.Collection();
 
 const commandFiles = fs
@@ -21,7 +23,9 @@ for (const file of commandFiles) {
 
 client.once("ready", () => {
   console.log("Retro bot is Online!");
-   client.user.setActivity('Prefix:"^"');
+  client.user.setActivity('Prefix:"^"');
+
+  welcome(client);
 });
 
 client.on("message", (message) => {
