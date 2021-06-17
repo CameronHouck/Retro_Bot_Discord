@@ -24,6 +24,13 @@ client.once("ready", () => {
   client.user.setActivity('Prefix:"^"');
 });
 
+client.on("guildMemberAdd", (guildMember) => {
+  let welcomeRole = guildMember.guild.roles.cache.find(
+    (role) => role.id === "855179545161236480"
+  );
+  guildMember.roles.add(welcomeRole);
+});
+
 client.on("guildMemberAdd", (member) => {
   member.roles.add(member.guild.roles.cache.find((i) => i.name === "joins"));
 
@@ -44,7 +51,7 @@ client.on("guildMemberRemove", (member) => {
   const goodbyeEmbed = new Discord.MessageEmbed();
 
   goodbyeEmbed.setColor("#EF2559");
-  goodbyeEmbed.setTitle("cya bitch, i didn't want you in here anyway!");
+  goodbyeEmbed.setTitle("Cya bitch, I didn't want you in here anyway!");
   goodbyeEmbed.setImage(
     "https://i.kym-cdn.com/photos/images/newsfeed/001/046/414/9bc.gif"
   );

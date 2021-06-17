@@ -8,6 +8,9 @@ module.exports = {
       let mainRole = message.guild.roles.cache.find(
         (role) => role.name === "Member"
       );
+      let nsfwRole = message.guild.roles.cache.find(
+        (role) => role.name === "18+"
+      );
       let muteRole = message.guild.roles.cache.find(
         (role) => role.name === "Muted"
       );
@@ -16,6 +19,7 @@ module.exports = {
 
       if (!args[1]) {
         memberTarget.roles.remove(mainRole.id);
+        memberTarget.roles.remove(nsfwRole.id);
         memberTarget.roles.add(muteRole.id);
         message.channel.send(
           `<@${memberTarget.user.id}> is now muted, shut up you!`
@@ -23,6 +27,7 @@ module.exports = {
         return;
       }
       memberTarget.roles.remove(mainRole.id);
+      memberTarget.roles.remove(nsfwRole.id);
       memberTarget.roles.add(muteRole.id);
       message.channel.send(
         `<@${memberTarget.user.id}> has been muted for: ${ms(ms(args[1]))}`
@@ -30,6 +35,7 @@ module.exports = {
 
       setTimeout(function () {
         memberTarget.roles.remove(muteRole.id);
+        memberTarget.roles.add(nsfwRole.id);
         memberTarget.roles.add(mainRole.id);
       }, ms(args[1]));
     } else {

@@ -6,6 +6,9 @@ module.exports = {
     const verifiedRole = message.guild.roles.cache.find(
       (role) => role.name === "Member"
     );
+    const unverifiedRole = message.guild.roles.cache.find(
+      (role) => role.name === "Unverified"
+    );
 
     const verifiedEmoji = "✅";
 
@@ -27,9 +30,9 @@ module.exports = {
 
       if (reaction.message.channel.id == channel) {
         if (reaction.emoji.name === verifiedEmoji) {
-          await reaction.message.guild.members.cache
-            .get(user.id)
-            .roles.add(verifiedRole);
+          const hello = await reaction.message.guild.members.cache.get(user.id);
+          hello.roles.add(verifiedRole);
+          hello.roles.remove(unverifiedRole);
         }
       } else {
         return;
