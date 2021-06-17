@@ -43,11 +43,11 @@ client.on("guildMemberAdd", (member) => {
 client.on("guildMemberRemove", (member) => {
   const goodbyeEmbed = new Discord.MessageEmbed();
 
-  const attachment = new attachment("./images/cyachump.gif, cyachump.gif");
-
   goodbyeEmbed.setColor("#EF2559");
   goodbyeEmbed.setTitle("cya bitch, i didn't want you in here anyway!");
-  goodbyeEmbed.setImage(attachment);
+  goodbyeEmbed.setImage(
+    "https://i.kym-cdn.com/photos/images/newsfeed/001/046/414/9bc.gif"
+  );
 
   member.guild.channels.cache
     .find((i) => i.name === "joins")
