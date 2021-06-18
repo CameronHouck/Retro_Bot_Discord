@@ -102,6 +102,8 @@ client.on("message", (message) => {
     client.commands.get("ping").run(client, message, args);
   } else if (command === "8ball") {
     client.commands.get("8ball").run(client, message, args);
+  } else if (command === "whois") {
+    client.commands.get("whois").run(client, message, args);
   }
 });
 
