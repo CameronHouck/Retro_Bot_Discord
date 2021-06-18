@@ -4,6 +4,18 @@ const client = new Discord.Client({
   partials: ["MESSAGE", "CHANNEL", "REACTION"],
 });
 
+const mongoose = require("mongoose");
+
+mongoose
+  .connect(
+    "mongodb+srv://CameronHouck:200284jb@retrobotcluster.6soct.mongodb.net/Data",
+    {
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
+    }
+  )
+  .then(console.log("Connected to mongo db!"));
+
 const prefix = "^";
 
 const fs = require("fs");
@@ -64,12 +76,7 @@ client.on("message", (message) => {
   const args = message.content.slice(prefix.length).split(/ +/);
   const command = args.shift().toLowerCase();
 
-  if (!message.member.roles.cache.has("853123121418993664")) {
-  } else if (command === "verifyrole") {
-    client.commands.get("verifyrole").execute(message, args, Discord, client);
-  }
   if (!message.member.roles.cache.has("853125409745666069")) {
-    message.channel.send("you can't use this command retard!");
   } else if (command === "kick") {
     client.commands.get("kick").execute(message, args);
   } else if (command === "ban") {
@@ -82,7 +89,20 @@ client.on("message", (message) => {
     client.commands.get("unmute").run(client, message, args);
   } else if (command === "tempmute") {
     client.commands.get("tempmute").run(client, message, args);
+  } else if (command === "dm") {
+    client.commands.get("dm").run(client, message, args);
+  }
+
+  if (!message.member.roles.cache.has("853123121418993664")) {
+  } else if (command === "verifyrole") {
+    client.commands.get("verifyrole").execute(message, args, Discord, client);
+  } else if (command === "avatar") {
+    client.commands.get("avatar").execute(client, message, args);
   }
 });
 
 client.login("ODU0ODQ3NTA3Nzk1OTM1MjUy.YMp4yA.sc8hpoGuQabNNadcQFTEQBCoQHs");
+
+// else if (!message.member.roles.cache.has("853123121418993664")) {
+//   message.channel.send("You can't use this command Retard!");
+// }
