@@ -10,6 +10,8 @@
   "author": "Cameron Houck",
   "license": "ISC",
   "dependencies": {
+    "common-tags": "^1.8.0",
+    "discord": "^0.8.2",
     "discord.js": "^12.5.3",
     "mongoose": "^5.12.14",
     "ms": "^2.1.3"

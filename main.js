@@ -98,6 +98,10 @@ client.on("message", (message) => {
     client.commands.get("verifyrole").execute(message, args, Discord, client);
   } else if (command === "avatar") {
     client.commands.get("avatar").execute(client, message, args);
+  } else if (command === "ping") {
+    client.commands.get("ping").run(client, message, args);
+  } else if (command === "8ball") {
+    client.commands.get("8ball").run(client, message, args);
   }
 });
 
