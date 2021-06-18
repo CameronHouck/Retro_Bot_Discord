@@ -77,9 +77,11 @@ client.on("message", (message) => {
   } else if (command === "clear") {
     client.commands.get("clear").execute(message, args);
   } else if (command === "mute") {
-    client.commands.get("mute").execute(message, args);
+    client.commands.get("mute").run(client, message, args);
   } else if (command === "unmute") {
-    client.commands.get("unmute").execute(message, args);
+    client.commands.get("unmute").run(client, message, args);
+  } else if (command === "tempmute") {
+    client.commands.get("tempmute").run(client, message, args);
   }
 });
 

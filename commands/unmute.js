@@ -1,29 +1,21 @@
+const { Message } = require("discord.js");
+
 module.exports = {
   name: "unmute",
-  description: "This unmutes a member",
-  execute(message, args) {
-    const target = message.mentions.users.first();
-    if (target) {
-      let mainRole = message.guild.roles.cache.find(
-        (role) => role.name === "Member"
-      );
-      let nsfwRole = message.guild.roles.cache.find(
-        (role) => role.name === "18+"
-      );
-      let muteRole = message.guild.roles.cache.find(
-        (role) => role.name === "Muted"
-      );
+  /**
+   * @param {Message} message
+   */
+  run: async (client, message, args) => {
+    const Member = message.mentions.members.first() || message.guild.members.cache.get(args[0])
 
-      let memberTarget = message.guild.members.cache.get(target.id);
+    if(!Member) return message.channel.send("Ping someone that exists moron!")
 
-      memberTarget.roles.remove(muteRole.id);
-      memberTarget.roles.add(nsfwRole.id);
-      memberTarget.roles.add(mainRole.id);
-      message.channel.send(
-        `<@${memberTarget.user.id}> you are unmuted, be good!`
-      );
-    } else {
-      message.channel.send("That person doesn't even exist Dummy!");
-    }
+    const role = message.guild.roles.cache.find(r => r.name.toLowerCase() === "muted")
+    const other = message.guild.roles.cache.find(r => r.name.toLowerCase() === "member")
+
+    await Member.roles.remove(role)
+    Member.roles.add(other)
+
+    message.channel.send(`${Member} has been unmuted, be good!`)
   },
 };
