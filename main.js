@@ -41,12 +41,15 @@ client.on("guildMemberAdd", (member) => {
   let welcomeRole = member.guild.roles.cache.find(
     (role) => role.id === "855179545161236480"
   );
+
   member.roles.add(welcomeRole);
 
   const welcomeEmbed = new Discord.MessageEmbed();
 
   welcomeEmbed.setColor("#FEC510");
-  welcomeEmbed.setTitle("Welcome to my server, enjoy your stay!");
+  welcomeEmbed.setTitle(
+    `Welcome to my server ${member.user.username}, enjoy your stay!`
+  );
   welcomeEmbed.setImage(
     "https://media1.tenor.com/images/ab75f02a4474553c851318bda0a08aa6/tenor.gif?itemid=21819402"
   );
@@ -60,7 +63,9 @@ client.on("guildMemberRemove", (member) => {
   const goodbyeEmbed = new Discord.MessageEmbed();
 
   goodbyeEmbed.setColor("#EF2559");
-  goodbyeEmbed.setTitle("Cya bitch, I didn't want you in here anyway!");
+  goodbyeEmbed.setTitle(
+    `Cya ${member.user.username}, I didn't want you in here anyway!`
+  );
   goodbyeEmbed.setImage(
     "https://i.kym-cdn.com/photos/images/newsfeed/001/046/414/9bc.gif"
   );
@@ -91,11 +96,11 @@ client.on("message", (message) => {
     client.commands.get("tempmute").run(client, message, args);
   } else if (command === "dm") {
     client.commands.get("dm").run(client, message, args);
+  }else if (command === "verifyrole") {
+    client.commands.get("verifyrole").execute(message, args, Discord, client);
   }
 
   if (!message.member.roles.cache.has("853123121418993664")) {
-  } else if (command === "verifyrole") {
-    client.commands.get("verifyrole").execute(message, args, Discord, client);
   } else if (command === "avatar") {
     client.commands.get("avatar").execute(client, message, args);
   } else if (command === "ping") {

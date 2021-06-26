@@ -5,7 +5,7 @@ module.exports = {
     if (!args[0])
       return message.reply("Enter a number of messages to clear, idiot!");
     if (isNaN(args[0]))
-      return message.reply("Those arent numbers, go back to school!");
+      return message.reply("That isn't a number, go back to school!");
     if (args[0] > 100)
       return message.reply("I only clear 100 at a time, loser!");
     if (args[0] < 1)
@@ -16,5 +16,11 @@ module.exports = {
       .then((messages) => {
         message.channel.bulkDelete(messages);
       });
+    const messageToDelete = await message.channel.send(
+      "Cleared that nasty Shit!"
+    );
+    setTimeout(() => {
+      messageToDelete.delete();
+    }, 5000);
   },
 };

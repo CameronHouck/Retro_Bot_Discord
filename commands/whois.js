@@ -24,6 +24,10 @@ module.exports = {
           value: user.bot,
         },
         {
+          name: "User id",
+          value: user.id,
+        },
+        {
           name: "Nickname",
           value: member.nickname || "None",
         },
