@@ -6,6 +6,8 @@ const client = new Discord.Client({
 
 const mongoose = require("mongoose");
 
+const antiAd = require("./commands/anti-ad");
+
 mongoose
   .connect(
     "mongodb+srv://CameronHouck:200284jb@retrobotcluster.6soct.mongodb.net/Data",
@@ -35,6 +37,8 @@ client.once("ready", () => {
   console.log("Retro bot is Online!");
   client.user.setActivity('Prefix:"^"');
 });
+
+antiAd(client);
 
 client.on("guildMemberAdd", (member) => {
   console.log(member);
@@ -96,7 +100,7 @@ client.on("message", (message) => {
     client.commands.get("tempmute").run(client, message, args);
   } else if (command === "dm") {
     client.commands.get("dm").run(client, message, args);
-  }else if (command === "verifyrole") {
+  } else if (command === "verifyrole") {
     client.commands.get("verifyrole").execute(message, args, Discord, client);
   }
 
@@ -113,7 +117,3 @@ client.on("message", (message) => {
 });
 
 client.login("ODU0ODQ3NTA3Nzk1OTM1MjUy.YMp4yA.sc8hpoGuQabNNadcQFTEQBCoQHs");
-
-// else if (!message.member.roles.cache.has("853123121418993664")) {
-//   message.channel.send("You can't use this command Retard!");
-// }
