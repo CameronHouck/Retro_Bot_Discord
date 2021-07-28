@@ -38,6 +38,39 @@ client.once("ready", () => {
   client.user.setActivity('Prefix:"^"');
 });
 
+client.on("message", (message) => {
+  if (message.content.length > 100) message.channel.send("slow down bitch!");
+});
+
+client.on("message", (message) => {
+  if (message.content.toLowerCase() === "hi") message.channel.send("HELLO!");
+  if (message.content.toLowerCase() === "hello") message.channel.send("HI!");
+  if (message.content.toLowerCase() === "nigger")
+    message.channel.send("faggot");
+  if (message.content.toLowerCase() === "suck my dick")
+    message.channel.send("You don't have one!");
+  if (message.content.toLowerCase() === "oof")
+    message.channel.send("Imagine playing roblox.");
+  if (message.content.toLowerCase() === "wtf") message.channel.send(":eyes:");
+  if (message.content.toLowerCase() === "wth") message.channel.send(":eyes:");
+  if (message.content.toLowerCase() === "i'm bored")
+    message.channel.send("So Am I!");
+  if (message.content.toLowerCase() === "bored")
+    message.channel.send("So Am I!");
+  if (message.content.toLowerCase() === "so bored")
+    message.channel.send("So Am I!");
+  if (message.content.toLowerCase() === "im bored")
+    message.channel.send("So Am I!");
+  if (message.content.toLowerCase() === "hey retro")
+    message.channel.send("What do you want, leave me alone?");
+  if (message.content.toLowerCase() === "hi retro")
+    message.channel.send("Don't talk to me!");
+  if (message.content.toLowerCase() === "hello retro")
+    message.channel.send("Please fuck off!");
+  if (message.content.toLowerCase() === "yo retro")
+    message.channel.send("'yo'? what are you fucking stupid? stfu!");
+});
+
 antiAd(client);
 
 client.on("guildMemberAdd", (member) => {
