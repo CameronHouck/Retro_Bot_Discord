@@ -2,7 +2,7 @@ module.exports = {
   name: "verifyrole",
   description: "Sets up a reaction role message!",
   async execute(message, args, Discord, client) {
-    const channel = "854872129413447680";
+    const channel = "894598935455350814";
     const verifiedRole = message.guild.roles.cache.find(
       (role) => role.name === "Member"
     );

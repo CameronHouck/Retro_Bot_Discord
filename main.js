@@ -34,12 +34,20 @@ for (const file of commandFiles) {
 }
 
 client.once("ready", () => {
-  console.log("Retro bot is Online!");
+  console.log("Retro is Online!");
   client.user.setActivity('Prefix:"^"');
 });
 
-client.on("message", (message) => {
-  if (message.content.length > 100) message.channel.send("slow down bitch!");
+client.on("message", (messagesent) => {
+  if (messagesent.content.length > 100)
+    messagesent.channel.send("slow down bitch!");
+});
+
+client.on("message", (messagesent) => {
+  if (messagesent.content.length > 100)
+    setTimeout(() => {
+      messagesent.delete();
+    }, 0);
 });
 
 client.on("message", (message) => {
@@ -76,7 +84,7 @@ antiAd(client);
 client.on("guildMemberAdd", (member) => {
   console.log(member);
   let welcomeRole = member.guild.roles.cache.find(
-    (role) => role.id === "855179545161236480"
+    (role) => role.id === "894599008335560724"
   );
 
   member.roles.add(welcomeRole);
@@ -85,10 +93,10 @@ client.on("guildMemberAdd", (member) => {
 
   welcomeEmbed.setColor("#FEC510");
   welcomeEmbed.setTitle(
-    `Welcome to my server ${member.user.username}, enjoy your stay!`
+    `Welcome to the server, @${person.user.tag} enjoy your stay!`
   );
   welcomeEmbed.setImage(
-    "https://media1.tenor.com/images/ab75f02a4474553c851318bda0a08aa6/tenor.gif?itemid=21819402"
+    "https://media.discordapp.net/attachments/864181115334033488/906993890312208424/welcome.gif"
   );
 
   member.guild.channels.cache
@@ -101,10 +109,10 @@ client.on("guildMemberRemove", (member) => {
 
   goodbyeEmbed.setColor("#EF2559");
   goodbyeEmbed.setTitle(
-    `Cya ${member.user.username}, I didn't want you in here anyway!`
+    `Cya @${person.user.tag}, didn't want you here anyway!`
   );
   goodbyeEmbed.setImage(
-    "https://i.kym-cdn.com/photos/images/newsfeed/001/046/414/9bc.gif"
+    "https://media.discordapp.net/attachments/864181115334033488/906994469721755668/7Dsn96S.gif"
   );
 
   member.guild.channels.cache
@@ -118,7 +126,7 @@ client.on("message", (message) => {
   const args = message.content.slice(prefix.length).split(/ +/);
   const command = args.shift().toLowerCase();
 
-  if (!message.member.roles.cache.has("853125409745666069")) {
+  if (!message.member.roles.cache.has("894592214016073799")) {
   } else if (command === "kick") {
     client.commands.get("kick").execute(message, args);
   } else if (command === "ban") {
@@ -135,9 +143,17 @@ client.on("message", (message) => {
     client.commands.get("dm").run(client, message, args);
   } else if (command === "verifyrole") {
     client.commands.get("verifyrole").execute(message, args, Discord, client);
+  } else if (command === "avatar") {
+    client.commands.get("avatar").execute(client, message, args);
+  } else if (command === "ping") {
+    client.commands.get("ping").run(client, message, args);
+  } else if (command === "8ball") {
+    client.commands.get("8ball").run(client, message, args);
+  } else if (command === "whois") {
+    client.commands.get("whois").run(client, message, args);
   }
 
-  if (!message.member.roles.cache.has("853123121418993664")) {
+  if (!message.member.roles.cache.has("894592798723022888")) {
   } else if (command === "avatar") {
     client.commands.get("avatar").execute(client, message, args);
   } else if (command === "ping") {
@@ -149,4 +165,4 @@ client.on("message", (message) => {
   }
 });
 
-client.login("ODU0ODQ3NTA3Nzk1OTM1MjUy.YMp4yA.sc8hpoGuQabNNadcQFTEQBCoQHs");
+client.login("OTIzNzc1MDMxNDYzNTI2NDYw.YcU6ig.ZxyJL2LOOzO0n-Hz18t7ck8CIaY");
